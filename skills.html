@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills — Christ Hanzen Rallos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+  <div id="scroll-prog"></div>
+  <div id="particles"></div>
+
+  <div id="loading">
+    <div class="load-logo">CHR</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.2em;margin-top:.3rem">CHRIST HANZEN RALLOS</div>
+    <div class="load-bar-wrap"><div class="load-bar"></div></div>
+    <div class="load-text">LOADING...</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a class="nav-logo" href="index.html">CHR<span style="color:var(--text3)">.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div id="mobile-nav">
+    <a href="index.html" onclick="toggleMobileNav()">Home</a>
+    <a href="about.html" onclick="toggleMobileNav()">About</a>
+    <a href="projects.html" onclick="toggleMobileNav()">Projects</a>
+    <a href="education.html" onclick="toggleMobileNav()">Education</a>
+    <a href="services.html" onclick="toggleMobileNav()">Services</a>
+    <a href="skills.html" onclick="toggleMobileNav()">Skills</a>
+    <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
+  </div>
+
+  <!-- ==================== SKILLS ==================== -->
+  <section id="skills" style="background:var(--bg2);padding-top:7rem">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-title">Skills</div>
+        <div class="section-sub">// TECHNICAL EXPERTISE</div>
+        <div class="section-line"></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem"
+           class="reveal" id="skills-section">
+        <div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--neon);letter-spacing:.12em;margin-bottom:1.2rem">// PROGRAMMING</div>
+          <div id="prog-skills"></div>
+        </div>
+        <div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--neon);letter-spacing:.12em;margin-bottom:1.2rem">// CREATIVE SKILLS</div>
+          <div id="creative-skills"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <div id="chatbot-widget"></div>
+
+  <script src="js/script.js"></script>
+  <script>
+    /* ── SKILLS DATA ── */
+    const progSkills = [
+      { name: 'HTML / CSS',   pct: 90 },
+      { name: 'JavaScript',   pct: 82 },
+      { name: 'PHP',          pct: 75 },
+      { name: 'Java',         pct: 70 },
+      { name: 'Python',       pct: 65 },
+      { name: 'C / C#',       pct: 60 },
+      { name: 'React',        pct: 75 },
+    ];
+    const creativeSkills = [
+      { name: 'Video Editing',  pct: 95 },
+      { name: 'Photography',    pct: 90 },
+      { name: 'Photo Editing',  pct: 88 },
+      { name: 'UI/UX Design',   pct: 85 },
+      { name: 'Graphic Design', pct: 80 },
+      { name: 'Leadership',     pct: 85 },
+    ];
+
+    function renderSkills(arr, id) {
+      document.getElementById(id).innerHTML = arr.map(s => `
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header">
+            <span class="skill-name">${s.name}</span>
+            <span class="skill-pct">${s.pct}%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" data-pct="${s.pct}"></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* Trigger bar animation when section is visible */
+    let skillsAnimated = false;
+    function animateSkills() {
+      if (skillsAnimated) return;
+      const s = document.getElementById('skills-section');
+      if (s && s.getBoundingClientRect().top < window.innerHeight - 100) {
+        skillsAnimated = true;
+        document.querySelectorAll('.skill-fill').forEach(el => {
+          el.style.width = el.dataset.pct + '%';
+        });
+      }
+    }
+    window.addEventListener('scroll', animateSkills);
+
+    function initSkills() {
+      renderSkills(progSkills, 'prog-skills');
+      renderSkills(creativeSkills, 'creative-skills');
+      /* Small delay so bars animate on load */
+      setTimeout(animateSkills, 600);
+    }
+
+    initLoading(initSkills);
+  </script>
+</body>
+</html>

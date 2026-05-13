@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Christ Hanzen Rallos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+  <div id="scroll-prog"></div>
+  <div id="particles"></div>
+
+  <div id="loading">
+    <div class="load-logo">CHR</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.2em;margin-top:.3rem">CHRIST HANZEN RALLOS</div>
+    <div class="load-bar-wrap"><div class="load-bar"></div></div>
+    <div class="load-text">LOADING...</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a class="nav-logo" href="index.html">CHR<span style="color:var(--text3)">.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div id="mobile-nav">
+    <a href="index.html" onclick="toggleMobileNav()">Home</a>
+    <a href="about.html" onclick="toggleMobileNav()">About</a>
+    <a href="projects.html" onclick="toggleMobileNav()">Projects</a>
+    <a href="education.html" onclick="toggleMobileNav()">Education</a>
+    <a href="services.html" onclick="toggleMobileNav()">Services</a>
+    <a href="skills.html" onclick="toggleMobileNav()">Skills</a>
+    <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
+  </div>
+
+  <!-- ==================== PROJECTS ==================== -->
+  <section id="projects" style="padding-top:7rem">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-title">Projects</div>
+        <div class="section-sub">// FEATURED WORK &amp; PORTFOLIO</div>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="filter-btns reveal">
+        <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+        <button class="filter-btn" onclick="filterProjects('web', this)">Web Systems</button>
+        <button class="filter-btn" onclick="filterProjects('video', this)">Video Editing</button>
+        <button class="filter-btn" onclick="filterProjects('photo', this)">Photography</button>
+        <button class="filter-btn" onclick="filterProjects('ui', this)">UI/UX Design</button>
+      </div>
+
+      <!-- Project Cards (rendered by JS) -->
+      <div class="card-grid grid-3 reveal" id="projects-grid"></div>
+
+    </div>
+  </section>
+
+  <!-- Project Detail Modal -->
+  <div class="modal-overlay" id="project-modal" onclick="closeModal('project-modal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal('project-modal')">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+  <div id="chatbot-widget"></div>
+
+  <script src="js/script.js"></script>
+  <script>
+    /* ── PROJECTS DATA ── */
+    const projects = [
+      { id:1, title:'Student Portal System',   cat:'web',   icon:'🌐', badge:'PHP / MySQL',      desc:'Full-stack student information system with enrollment, grades, and attendance tracking.',     tech:['PHP','MySQL','HTML/CSS','JavaScript'] },
+      { id:2, title:'PSITS Events Reel',        cat:'video', icon:'🎬', badge:'Video Edit',        desc:'Highlight reel for PSITS events including orientation, intramurals, and extravaganza.',      tech:['Premiere Pro','After Effects'] },
+      { id:3, title:'E-Commerce UI Design',     cat:'ui',    icon:'🎨', badge:'UI/UX',             desc:'Modern e-commerce dashboard UI with dark theme, product listings, and checkout flow.',       tech:['Figma','Prototype'] },
+      { id:4, title:'Event Photography — CESAFI',cat:'photo',icon:'📸', badge:'Photography',       desc:'Event coverage photography for CESAFI Esports League tournament.',                          tech:['Photography','Lightroom'] },
+      { id:5, title:'WordPress Company Site',   cat:'web',   icon:'🌐', badge:'WordPress',         desc:'Professional company website built with WordPress, custom theme, and SEO optimization.',     tech:['WordPress','PHP','CSS'] },
+      { id:6, title:'Esports Promo Video',      cat:'video', icon:'🎬', badge:'Motion Graphics',   desc:'Promotional video with motion graphics for UCMN MLBB Tournament.',                          tech:['Premiere Pro','After Effects','Illustrator'] },
+      { id:7, title:'Portfolio UI Mockup',      cat:'ui',    icon:'🎨', badge:'UI Design',         desc:'Personal portfolio redesign mockup with glassmorphism and dark neon aesthetic.',             tech:['Figma','Adobe XD'] },
+      { id:8, title:'Portrait Photography',     cat:'photo', icon:'📸', badge:'Portrait',          desc:'Professional portrait photography for events, profiles, and promotional materials.',        tech:['Photography','Lightroom','Photoshop'] },
+      { id:9, title:'Java Inventory System',    cat:'web',   icon:'💻', badge:'Java',              desc:'Desktop inventory management system built with Java for academic project.',                  tech:['Java','JavaFX','MySQL'] },
+    ];
+
+    let currentFilter = 'all';
+
+    function renderProjects() {
+      const grid = document.getElementById('projects-grid');
+      const filtered = currentFilter === 'all' ? projects : projects.filter(p => p.cat === currentFilter);
+      grid.innerHTML = filtered.map(p => `
+        <div class="proj-card" onclick="openProject(${p.id})">
+          <div class="proj-thumb">
+            <div class="proj-thumb-icon">${p.icon}</div>
+            <div class="proj-badge">${p.badge}</div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-title">${p.title}</div>
+            <div class="proj-desc">${p.desc}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.8rem">
+              ${p.tech.map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+            <div class="proj-links">
+              <a class="proj-link" href="#" onclick="event.stopPropagation()">GitHub</a>
+              <a class="proj-link" href="#" onclick="event.stopPropagation()">Live Demo</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterProjects(cat, btn) {
+      currentFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProjects();
+    }
+
+    function openProject(id) {
+      const p = projects.find(x => x.id === id);
+      document.getElementById('modal-content').innerHTML = `
+        <div style="font-family:'Orbitron',monospace;font-size:.7rem;color:var(--neon);letter-spacing:.1em;margin-bottom:.5rem">${p.badge}</div>
+        <div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;margin-bottom:.8rem">${p.icon} ${p.title}</div>
+        <div style="font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:1rem">${p.desc}</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--neon);margin-bottom:.5rem">TECH STACK</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:1.2rem">
+          ${p.tech.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+        <div style="display:flex;gap:.8rem">
+          <a class="btn btn-primary" href="#" style="font-size:.8rem;padding:.5rem 1rem">GitHub →</a>
+          <a class="btn btn-ghost" href="#" style="font-size:.8rem;padding:.5rem 1rem">Live Demo →</a>
+        </div>
+      `;
+      document.getElementById('project-modal').classList.add('show');
+    }
+
+    initLoading(renderProjects);
+  </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Christ Hanzen Rallos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+  <div id="scroll-prog"></div>
+  <div id="particles"></div>
+
+  <!-- LOADING -->
+  <div id="loading">
+    <div class="load-logo">CHR</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.2em;margin-top:.3rem">CHRIST HANZEN RALLOS</div>
+    <div class="load-bar-wrap"><div class="load-bar"></div></div>
+    <div class="load-text">LOADING...</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a class="nav-logo" href="index.html">CHR<span style="color:var(--text3)">.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div id="mobile-nav">
+    <a href="index.html" onclick="toggleMobileNav()">Home</a>
+    <a href="about.html" onclick="toggleMobileNav()">About</a>
+    <a href="projects.html" onclick="toggleMobileNav()">Projects</a>
+    <a href="education.html" onclick="toggleMobileNav()">Education</a>
+    <a href="services.html" onclick="toggleMobileNav()">Services</a>
+    <a href="skills.html" onclick="toggleMobileNav()">Skills</a>
+    <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
+  </div>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section id="about" style="background:var(--bg2);padding-top:7rem">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-title">About Me</div>
+        <div class="section-sub">// PERSONAL PROFILE &amp; BACKGROUND</div>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="about-grid">
+
+        <!-- Left: Personal Info + Stats -->
+        <div class="reveal">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.2rem">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--neon);letter-spacing:.12em;margin-bottom:.8rem">// PERSONAL INFO</div>
+            <div style="font-size:.85rem;color:var(--text2);line-height:1.8">
+              <div>📍 Basak Mandaue, Cebu City 6014</div>
+              <div>✉ kagornigaw@gmail.com</div>
+              <div>📞 +63 950 688 6467</div>
+              <div>🎓 UC BSIT — 2023–2027</div>
+            </div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-box"><div class="stat-num">3+</div><div class="stat-lbl">YEARS EXP</div></div>
+            <div class="stat-box"><div class="stat-num">10+</div><div class="stat-lbl">PROJECTS</div></div>
+            <div class="stat-box"><div class="stat-num">7+</div><div class="stat-lbl">TECH STACK</div></div>
+            <div class="stat-box"><div class="stat-num">5+</div><div class="stat-lbl">ORGS</div></div>
+          </div>
+        </div>
+
+        <!-- Right: Bio + Timeline -->
+        <div>
+          <div class="reveal" style="margin-bottom:2rem">
+            <p style="color:var(--text2);line-height:1.8;margin-bottom:1rem">
+              I'm a passionate BSIT student at the University of Cebu with a strong drive for web development,
+              multimedia creation, and digital innovation. I blend technical programming skills with creative
+              media production to deliver well-rounded digital solutions.
+            </p>
+            <p style="color:var(--text2);line-height:1.8">
+              As a PSITS officer, media volunteer, and academic freelancer, I've honed my leadership,
+              communication, and technical abilities through real-world experience — from OJT at Philippine
+              Postal Corporation to editing event coverage for CESAFI Esports League.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--neon);letter-spacing:.12em;margin-bottom:1rem">// EXPERIENCE TIMELINE</div>
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-year">2025 – PRESENT</div>
+                <div class="tl-title">PSITS Media Chief Video Editor</div>
+                <div class="tl-sub">University of Cebu — Leading media production for all PSITS events</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-year">2024 – PRESENT</div>
+                <div class="tl-title">PSITS Officer &amp; CESAFI Video Editor</div>
+                <div class="tl-sub">1st–4th Year Representative + Event coverage for Esports League</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-year">2025 – PRESENT</div>
+                <div class="tl-title">AWS Cloud Clubs — Video Editor</div>
+                <div class="tl-sub">Video production for AWS Cloud Club meetings and events</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-year">2023 – PRESENT</div>
+                <div class="tl-title">Academic &amp; Freelance Developer</div>
+                <div class="tl-sub">Programming projects, UI/UX design, websites, video editing &amp; photography</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-year">OJT</div>
+                <div class="tl-title">Philippine Postal Corporation</div>
+                <div class="tl-sub">On-the-Job Training — office operations and technology systems</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal" style="margin-top:1.5rem">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--neon);letter-spacing:.12em;margin-bottom:.8rem">// INTERESTS &amp; HOBBIES</div>
+            <div>
+              <span class="tag">🎬 Vlogging</span>
+              <span class="tag">📸 Photography</span>
+              <span class="tag">⚽ Sports</span>
+              <span class="tag">🎵 Singing</span>
+              <span class="tag">💃 Dancing</span>
+              <span class="tag">🎮 Online Games</span>
+              <span class="tag">🎶 Music</span>
+              <span class="tag">🍳 Cooking</span>
+              <span class="tag">🏕 Hiking</span>
+              <span class="tag">⛺ Camping</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal" style="margin-top:4rem;text-align:center;padding:3rem;background:var(--card);border:1px solid rgba(0,212,255,.3);border-radius:12px">
+        <div style="font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:.6rem">Let's Collaborate</div>
+        <div style="color:var(--text2);margin-bottom:1.5rem;font-size:.9rem">Got a project in mind? Let's build something amazing together.</div>
+        <a class="btn btn-primary" href="contact.html">⚡ Get In Touch</a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <div id="chatbot-widget"></div>
+
+  <script src="js/script.js"></script>
+  <script>initLoading();</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Christ Hanzen Rallos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+  <div id="scroll-prog"></div>
+  <div id="particles"></div>
+
+  <div id="loading">
+    <div class="load-logo">CHR</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.2em;margin-top:.3rem">CHRIST HANZEN RALLOS</div>
+    <div class="load-bar-wrap"><div class="load-bar"></div></div>
+    <div class="load-text">LOADING...</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a class="nav-logo" href="index.html">CHR<span style="color:var(--text3)">.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div id="mobile-nav">
+    <a href="index.html" onclick="toggleMobileNav()">Home</a>
+    <a href="about.html" onclick="toggleMobileNav()">About</a>
+    <a href="projects.html" onclick="toggleMobileNav()">Projects</a>
+    <a href="education.html" onclick="toggleMobileNav()">Education</a>
+    <a href="services.html" onclick="toggleMobileNav()">Services</a>
+    <a href="skills.html" onclick="toggleMobileNav()">Skills</a>
+    <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
+  </div>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section id="services" style="padding-top:7rem">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-title">Services</div>
+        <div class="section-sub">// WHAT I OFFER</div>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Service Cards (rendered by JS) -->
+      <div class="card-grid grid-3 reveal" id="services-grid"></div>
+
+    </div>
+  </section>
+
+  <!-- Payment Plan Modal -->
+  <div class="modal-overlay" id="payment-modal" onclick="closeModal('payment-modal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal('payment-modal')">✕</button>
+      <div id="payment-content"></div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+  <div id="chatbot-widget"></div>
+
+  <script src="js/script.js"></script>
+  <script>
+    /* ── SERVICES DATA ── */
+    const services = [
+      {
+        icon: '🌐',
+        title: 'Website Development',
+        desc: 'Professional websites using WordPress — custom themes, plugins, SEO optimization, and ongoing maintenance.',
+        tech: ['WordPress','PHP','MySQL','HTML5','CSS3','JavaScript']
+      },
+      {
+        icon: '🎬',
+        title: 'Video Editing',
+        desc: 'High-quality video production for events, promos, social media, and corporate content with motion graphics.',
+        tech: ['Premiere Pro','After Effects','DaVinci Resolve']
+      },
+      {
+        icon: '📸',
+        title: 'Photography',
+        desc: 'Professional photography for events, portraits, products, and promotional campaigns with post-processing.',
+        tech: ['DSLR/Mirrorless','Lightroom','Photoshop']
+      },
+      {
+        icon: '🖼',
+        title: 'Photo Editing',
+        desc: 'Advanced photo retouching, color grading, compositing, and professional graphic design work.',
+        tech: ['Photoshop','Lightroom','Illustrator']
+      },
+      {
+        icon: '🎨',
+        title: 'UI/UX Design',
+        desc: 'Modern, user-centered interface design with wireframes, prototypes, and scalable design systems.',
+        tech: ['Figma','Adobe XD','Prototyping']
+      },
+    ];
+
+    function renderServices() {
+      document.getElementById('services-grid').innerHTML = services.map(s => `
+        <div class="svc-card">
+          <div class="svc-icon">${s.icon}</div>
+          <div class="svc-title">${s.title}</div>
+          <div class="svc-desc">${s.desc}</div>
+          <div class="tech-tags">${s.tech.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          <button class="btn btn-primary" onclick="openPayment('${s.title}')"
+                  style="font-size:.78rem;padding:.5rem 1rem;width:100%;justify-content:center">
+            Get Started →
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function openPayment(svc) {
+      document.getElementById('payment-content').innerHTML = `
+        <div style="font-family:'Orbitron',monospace;font-size:.7rem;color:var(--neon);letter-spacing:.1em;margin-bottom:.3rem">SERVICE PLAN</div>
+        <div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;margin-bottom:.5rem">${svc}</div>
+        <div style="font-size:.82rem;color:var(--text2);margin-bottom:1.2rem">Choose a plan that works for you:</div>
+        <div class="plan-grid">
+          <div class="plan-card selected" id="plan-monthly" onclick="selectPlan('monthly')">
+            <div class="plan-name">Monthly Plan</div>
+            <div class="plan-price">₱3,500</div>
+            <div class="plan-period">/ month</div>
+            <div class="plan-feat">• Flexible commitment<br>• Cancel anytime<br>• Monthly revisions<br>• Email support</div>
+          </div>
+          <div class="plan-card" id="plan-annual" onclick="selectPlan('annual')">
+            <div class="plan-name">Annual Plan</div>
+            <div class="plan-price">₱2,500</div>
+            <div class="plan-period">/ month (billed yearly)</div>
+            <div class="plan-feat">• 29% savings<br>• Priority support<br>• Unlimited revisions<br>• Dedicated manager</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:#ffd700;margin-top:.5rem">★ BEST VALUE</div>
+          </div>
+        </div>
+        <button class="btn btn-primary"
+                style="width:100%;justify-content:center;margin-top:1.2rem"
+                onclick="alert('This is a UI demo. Contact Christ at kagornigaw@gmail.com to proceed!')">
+          ⚡ Proceed to Checkout
+        </button>
+        <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text3);margin-top:.7rem">
+          UI DEMO — Contact directly to arrange payment
+        </div>
+      `;
+      document.getElementById('payment-modal').classList.add('show');
+    }
+
+    function selectPlan(plan) {
+      document.getElementById('plan-monthly').classList.toggle('selected', plan === 'monthly');
+      document.getElementById('plan-annual').classList.toggle('selected', plan === 'annual');
+    }
+
+    initLoading(renderServices);
+  </script>
+</body>
+</html>
