@@ -467,12 +467,12 @@ textarea.form-input { resize: vertical; min-height: 120px; }
   animation: spin 4s linear infinite; box-shadow: var(--neon-glow);
 }
 .hero-img {
-  width: 252px; height: 252px; border-radius: 50%; object-fit: cover;
+  width: 260px; height: 260px; border-radius: 50%; object-fit: cover;
   display: block; filter: contrast(1.1) brightness(1.05);
   border: 3px solid rgba(0,212,255,.3);
 }
 .hero-badge {
-  position: absolute; bottom: 10px; right: 10px;
+  position: absolute; bottom: -30px; right: -50px;
   background: var(--card); border: 1px solid var(--neon);
   padding: .3rem .8rem; border-radius: 20px;
   font-size: .7rem; font-family: 'Share Tech Mono', monospace;
