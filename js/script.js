@@ -87,43 +87,9 @@ function closeModal(id) {
   document.getElementById(id)?.classList.remove('show');
 }
 
-/* ── CHATBOT ── */
-const chatResponses = {
-  'hi':        'Hey there! 👋 How can I help you today?',
-  'hello':     "Hello! I'm Christ's assistant. What would you like to know?",
-  'skills':    'Christ is skilled in HTML/CSS (90%), JavaScript (82%), PHP (75%), Video Editing (95%), Photography (90%), and UI/UX Design (85%). Check the Skills page!',
-  'contact':   'You can reach Christ at kagornigaw@gmail.com or +63 950 688 6467. He\'s based in Cebu City, PH.',
-  'projects':  'Christ has worked on web systems, video editing, UI/UX design, and photography. Visit the Projects page!',
-  'services':  'Services: Website Development, Video Editing, Photography, Photo Editing, and UI/UX Design. Click "Get Started" on any service!',
-  'education': 'Christ is a BSIT student at University of Cebu (2023–2027). He graduated high school With Honors from Mandaue City Comprehensive NHS.',
-  'hire':      'To hire Christ, email kagornigaw@gmail.com or use the Contact form. He usually responds within 24 hours!',
-  'price':     'Plans start at ₱2,500/month (annual) or ₱3,500/month. Visit the Services page and click "Get Started" for pricing details.',
-};
-const defaultReplies = [
-  'Great question! Email Christ directly at kagornigaw@gmail.com for more details.',
-  'Try asking me about his skills, projects, services, education, or how to contact him!',
-];
-let defaultIdx = 0;
-
-function toggleChat() {
-  document.getElementById('chatbot')?.classList.toggle('open');
-}
-
-function sendChat() {
-  const inp  = document.getElementById('chat-input');
-  const msgs = document.getElementById('chat-msgs');
-  const txt  = inp?.value.trim();
-  if (!txt || !msgs) return;
-  msgs.innerHTML += `<div class="chat-msg user">${txt}</div>`;
-  inp.value = '';
-  const key   = Object.keys(chatResponses).find(k => txt.toLowerCase().includes(k));
-  const reply = key ? chatResponses[key] : defaultReplies[defaultIdx++ % defaultReplies.length];
-  setTimeout(() => {
-    msgs.innerHTML += `<div class="chat-msg bot">${reply}</div>`;
-    msgs.scrollTop = msgs.scrollHeight;
-  }, 700);
-  msgs.scrollTop = msgs.scrollHeight;
-}
+/* ── FLOWISE CHAT WIDGET ── */
+// The official Flowise embed widget is loaded via each HTML page's module script.
+// This frontend no longer uses the old local chat widget UI.
 
 /* ── SHARED FOOTER HTML (injected by each page) ── */
 function renderFooter() {
@@ -175,32 +141,8 @@ function renderFooter() {
   `;
 }
 
-/* ── SHARED CHATBOT HTML (injected by each page) ── */
-function renderChatbot() {
-  const el = document.getElementById('chatbot-widget');
-  if (!el) return;
-  el.innerHTML = `
-    <button id="chatbot-btn" onclick="toggleChat()" title="Chat with assistant">💬</button>
-    <div id="chatbot">
-      <div class="chat-header">
-        <div class="chat-dot"></div>
-        <div class="chat-title">CHR ASSISTANT</div>
-        <button onclick="toggleChat()" style="margin-left:auto;background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:.9rem">✕</button>
-      </div>
-      <div class="chat-msgs" id="chat-msgs">
-        <div class="chat-msg bot">Hey! 👋 I'm Christ's portfolio assistant. Ask me about his skills, services, or projects!</div>
-      </div>
-      <div class="chat-input-row">
-        <input class="chat-input" id="chat-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()">
-        <button class="chat-send" onclick="sendChat()">→</button>
-      </div>
-    </div>
-  `;
-}
-
 /* ── RUN ON DOM READY ── */
 document.addEventListener('DOMContentLoaded', () => {
   renderFooter();
-  renderChatbot();
   revealElements();
 });

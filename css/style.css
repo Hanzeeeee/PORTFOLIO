@@ -459,7 +459,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 
 /* ── HERO ── */
 #home { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; }
-.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding-right: 1rem; }
 .hero-img-wrap { position: relative; display: flex; justify-content: center; }
 .spin-ring {
   position: absolute; inset: -6px; border-radius: 50%;
@@ -515,5 +515,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .plan-grid { grid-template-columns: 1fr; }
+  body { padding-bottom: 5rem; }
   section { padding: 4rem 1.2rem; }
 }
